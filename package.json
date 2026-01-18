@@ -1,0 +1,48 @@
+{
+    "name": "omss-backend",
+    "version": "1.0.0",
+    "description": "OMSS-compliant streaming backend framework with pluggable provider system",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc && tsc-alias",
+        "dev": "tsx watch examples/basic-server.ts",
+        "start": "node dist/examples/basic-server.js",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "npm run clean && npm run build"
+    },
+    "keywords": [
+        "omss",
+        "streaming",
+        "media",
+        "backend",
+        "rest-api"
+    ],
+    "author": "OMSS Foundation",
+    "license": "MIT",
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "@fastify/cors": "^11.2.0",
+        "axios": "^1.13.2",
+        "dotenv": "^17.2.3",
+        "fastify": "^5.7.1",
+        "ioredis": "^5.9.2",
+        "nanoid": "^5.1.6",
+        "uuid": "^13.0.0",
+        "zod": "^4.3.5"
+    },
+    "devDependencies": {
+        "@types/ioredis": "^4.28.10",
+        "@types/jest": "^30.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.53.0",
+        "@typescript-eslint/parser": "^8.53.0",
+        "eslint": "^9.39.2",
+        "jest": "^30.2.0",
+        "prettier": "^3.8.0",
+        "ts-jest": "^29.4.6",
+        "tsc-alias": "^1.8.16",
+        "tsx": "^4.21.0"
+    }
+}
