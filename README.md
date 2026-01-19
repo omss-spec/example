@@ -2,7 +2,10 @@
 
 # OMSS Example Backend
 
-This is an example implementation of the **[OMSS (Open Media Streaming Standard)](https://github.com/omss-spec/omss-spec)** backend server. It demonstrates how to build a compliant streaming media aggregation service that scrapes content from multiple providers and returns standardized responses.
+<img  alt="40211688-73db-47bd-8153-30d1a416f576" src="https://github.com/user-attachments/assets/bc6d19dc-0d86-43e5-86cc-6e1d32bdab40" />
+
+
+This is an extendable example implementation of the **[OMSS (Open Media Streaming Standard)](https://github.com/omss-spec/omss-spec)** backend server. It demonstrates how to build a compliant streaming media aggregation service that scrapes content from multiple providers and returns standardized responses. This is nearly a scraping framework. It handles most of the logic already for you. You just have to add the scraping logic!
 
 </div>
 
@@ -76,7 +79,7 @@ const server = new OMSSServer({
         ttl: 7200,
     },
     tmdb: {
-        apiKey: process.env.TMDB_API_KEY!,
+        apiKey: process.env.TMDB_API_KEY,
         cacheTTL: 86400,
     },
 });
@@ -155,7 +158,7 @@ const server = new OMSSServer({
         ttl: 3600,
     },
     tmdb: {
-        apiKey: process.env.TMDB_API_KEY!,
+        apiKey: process.env.TMDB_API_KEY,
         cacheTTL: 86400,
     },
 });
@@ -180,7 +183,7 @@ const server = new OMSSServer({
         },
     },
     tmdb: {
-        apiKey: process.env.TMDB_API_KEY!,
+        apiKey: process.env.TMDB_API_KEY,
         cacheTTL: 86400,
     },
 });
@@ -204,7 +207,7 @@ const server = new OMSSServer({
         },
     },
     tmdb: {
-        apiKey: process.env.TMDB_API_KEY!,
+        apiKey: process.env.TMDB_API_KEY,
         cacheTTL: 86400,
     },
 });
