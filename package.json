@@ -1,48 +1,90 @@
 {
-    "name": "omss-backend",
+    "name": "@omss/framework",
     "version": "1.0.0",
-    "description": "OMSS-compliant streaming backend framework with pluggable provider system",
+    "description": "Official OMSS backend framework - Multi-provider streaming media aggregation with auto-discovery",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
     "scripts": {
-        "build": "tsc && tsc-alias",
+        "build": "npm run clean && tsc && tsc-alias",
         "dev": "tsx watch examples/basic-server.ts",
         "start": "node dist/examples/basic-server.js",
-        "clean": "rm -rf dist",
-        "prepublishOnly": "npm run clean && npm run build"
+        "clean": "rimraf dist",
+        "prepublishOnly": "npm run build",
+        "test": "jest",
+        "lint": "eslint src/**/*.ts",
+        "format": "prettier --write \"src/**/*.ts\""
     },
     "keywords": [
         "omss",
         "streaming",
         "media",
         "backend",
-        "rest-api"
+        "rest-api",
+        "video",
+        "movies",
+        "tv-shows",
+        "aggregation",
+        "tmdb",
+        "hls",
+        "dash",
+        "provider",
+        "scraper",
+        "framework"
     ],
     "author": "OMSS Foundation",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/omss-spec/example.git"
+    },
+    "bugs": {
+        "url": "https://github.com/omss-spec/example/issues"
+    },
+    "homepage": "https://github.com/omss-spec/example#readme",
     "engines": {
         "node": ">=18.0.0"
     },
     "dependencies": {
         "@fastify/cors": "^11.2.0",
         "axios": "^1.13.2",
-        "dotenv": "^17.2.3",
         "fastify": "^5.7.1",
         "ioredis": "^5.9.2",
-        "nanoid": "^5.1.6",
-        "uuid": "^13.0.0",
-        "zod": "^4.3.5"
+        "uuid": "^13.0.0"
     },
     "devDependencies": {
         "@types/ioredis": "^4.28.10",
         "@types/jest": "^30.0.0",
+        "@types/node": "^20.0.0",
+        "@types/uuid": "^10.0.0",
         "@typescript-eslint/eslint-plugin": "^8.53.0",
         "@typescript-eslint/parser": "^8.53.0",
         "eslint": "^9.39.2",
         "jest": "^30.2.0",
         "prettier": "^3.8.0",
+        "rimraf": "^6.1.2",
         "ts-jest": "^29.4.6",
         "tsc-alias": "^1.8.16",
-        "tsx": "^4.21.0"
+        "tsx": "^4.21.0",
+        "typescript": "^5.3.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     }
 }
