@@ -1,18 +1,18 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import { OMSSConfig } from './types';
-import { ProviderRegistry } from '@/providers/provider-registry';
+import { ProviderRegistry } from '../providers/provider-registry';
 import { createCacheService, CacheService } from './cache';
-import { SourceService } from '@/services/source.service';
-import { ProxyService } from '@/services/proxy.service';
-import { HealthService } from '@/services/health.service';
-import { ContentController } from '@/controllers/content.controller';
-import { ProxyController } from '@/controllers/proxy.controller';
-import { HealthController } from '@/controllers/health.controller';
-import { errorHandler } from '@/middleware/error-handler';
-import { requestLogger } from '@/middleware/logger';
-import { validateContentType } from '@/middleware/validation';
-import { TMDBService } from '@/services/tmdb.service';
+import { SourceService } from '../services/source.service';
+import { ProxyService } from '../services/proxy.service';
+import { HealthService } from '../services/health.service';
+import { ContentController } from '../controllers/content.controller';
+import { ProxyController } from '../controllers/proxy.controller';
+import { HealthController } from '../controllers/health.controller';
+import { errorHandler } from '../middleware/error-handler';
+import { requestLogger } from '../middleware/logger';
+import { validateContentType } from '../middleware/validation';
+import { TMDBService } from '../services/tmdb.service';
 
 export class OMSSServer {
     private app: FastifyInstance;

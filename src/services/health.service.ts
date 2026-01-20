@@ -1,5 +1,5 @@
-import { HealthResponse, OMSSConfig } from '@/core/types';
-import { ProviderRegistry } from '@/providers/provider-registry';
+import { HealthResponse, OMSSConfig } from '../core/types';
+import { ProviderRegistry } from '../providers/provider-registry';
 
 export class HealthService {
     constructor(

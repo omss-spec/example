@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { CacheService } from '@/core/cache';
-import { ProviderMediaObject } from '@/core/types';
+import { CacheService } from '../core/cache';
+import { ProviderMediaObject } from '../core/types';
 
 export interface TMDBMovieResponse {
     id: number;

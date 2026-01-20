@@ -1,9 +1,9 @@
-import { ProviderRegistry } from '@/providers/provider-registry';
-import { CacheService } from '@/core/cache';
-import { SourceResponse, ProviderResult, ResponseIdMapping, ProviderMediaObject } from '@/core/types';
-import { createTMDBValidator } from '@/middleware/validation';
-import { OMSSErrors } from '@/core/errors';
-import { TMDBService } from '@/services/tmdb.service';
+import { ProviderRegistry } from '../providers/provider-registry';
+import { CacheService } from '../core/cache';
+import { SourceResponse, ProviderResult, ResponseIdMapping, ProviderMediaObject } from '../core/types';
+import { createTMDBValidator } from '../middleware/validation';
+import { OMSSErrors } from '../core/errors';
+import { TMDBService } from '../services/tmdb.service';
 import { v4 as uuidv4 } from 'uuid';
 
 export class SourceService {

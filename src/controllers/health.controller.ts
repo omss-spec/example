@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { HealthService } from '@/services/health.service';
+import { HealthService } from '../services/health.service';
 
 export class HealthController {
     constructor(private healthService: HealthService) {}

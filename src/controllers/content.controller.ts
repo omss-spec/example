@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { SourceService } from '@/services/source.service';
+import { SourceService } from '../services/source.service';
 
 interface MovieParams {
     id: string;

@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { ProxyService } from '@/services/proxy.service';
+import { ProxyService } from '../services/proxy.service';
 
 interface ProxyQuery {
     data: string;

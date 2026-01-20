@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ProxyData } from '@/core/types';
-import { OMSSError } from '@/core/errors';
+import { ProxyData } from '../core/types';
+import { OMSSError } from '../core/errors';
 
 export interface ProxyResponse {
     data: Buffer | string;

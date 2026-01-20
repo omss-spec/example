@@ -1,4 +1,4 @@
-import { CacheConfig } from '@/core/types';
+import { CacheConfig } from '../core/types';
 import Redis from 'ioredis';
 
 export interface CacheService {
