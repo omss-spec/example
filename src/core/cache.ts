@@ -1,5 +1,5 @@
-import { CacheConfig } from '../core/types'
-import Redis from 'ioredis'
+import { CacheConfig } from '../core/types.js'
+import { Redis as RedisClient } from 'ioredis'
 
 export interface CacheService {
     get<T>(key: string): Promise<T | null>
@@ -59,14 +59,14 @@ export class MemoryCacheService implements CacheService {
 }
 
 export class RedisCacheService implements CacheService {
-    private client: Redis
+    private client: RedisClient
 
     constructor(config: CacheConfig['redis']) {
-        this.client = new Redis({
+        this.client = new RedisClient({
             host: config?.host || 'localhost',
             port: config?.port || 6379,
             password: config?.password,
-            retryStrategy: (times) => Math.min(times * 50, 2000),
+            retryStrategy: (times: number) => Math.min(times * 50, 2000),
         })
 
         this.client.on('error', (err) => {

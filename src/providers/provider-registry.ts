@@ -1,4 +1,4 @@
-import { BaseProvider } from './base-provider'
+import { BaseProvider } from './base-provider.js'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import { pathToFileURL } from 'url'

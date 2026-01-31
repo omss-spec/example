@@ -7,22 +7,21 @@
  */
 
 // Core exports
-export { OMSSServer } from './core/server'
-export { OMSSConfig, SourceResponse, Source, Subtitle, HealthResponse } from './core/types'
-export { OMSSError, OMSSErrors } from './core/errors'
-export { CacheService, MemoryCacheService, RedisCacheService } from './core/cache'
+export { OMSSServer } from './core/server.js'
+export { OMSSError, OMSSErrors } from './core/errors.js'
+export { type CacheService, MemoryCacheService, RedisCacheService } from './core/cache.js'
 
 // Provider exports
-export * from './providers/base-provider'
-export { ProviderRegistry, ProviderRegistryConfig } from './providers/provider-registry'
+export * from './providers/base-provider.js'
+export { ProviderRegistry, type ProviderRegistryConfig } from './providers/provider-registry.js'
 
 // Service exports
-export { SourceService } from './services/source.service'
-export { ProxyService } from './services/proxy.service'
-export { HealthService } from './services/health.service'
+export { SourceService } from './services/source.service.js'
+export { ProxyService } from './services/proxy.service.js'
+export { HealthService } from './services/health.service.js'
 
 // Utility exports
-export { ProxyService as ProxyUtils } from './services/proxy.service'
+export { ProxyService as ProxyUtils } from './services/proxy.service.js'
 
 // Re-export commonly used types
-export type * from './core/types'
+export type * from './core/types.js'

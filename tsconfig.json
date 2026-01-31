@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "target": "ES2022",
-        "module": "commonjs",
         "lib": ["ES2022"],
         "outDir": "./dist",
         "rootDir": "./src",
@@ -13,9 +14,7 @@
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
-        "moduleResolution": "node",
         "types": ["node"],
-
         "baseUrl": "."
     },
     "include": ["src/**/*"],

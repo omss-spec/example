@@ -1,5 +1,5 @@
-import { HealthResponse, OMSSConfig } from '../core/types'
-import { ProviderRegistry } from '../providers/provider-registry'
+import { HealthResponse, OMSSConfig } from '../core/types.js'
+import { ProviderRegistry } from '../providers/provider-registry.js'
 
 export class HealthService {
     constructor(
@@ -23,10 +23,12 @@ export class HealthService {
                 refresh: '/v1/refresh/{responseId}',
             },
             spec: 'omss',
-            note: this.config.note ?? `Running with ${this.registry.getEnabledProviders().length} provider(s). Supported Providers: ${this.registry
-                .getEnabledProviders()
-                .map((p) => p.name)
-                .join(', ')}`,
+            note:
+                this.config.note ??
+                `Running with ${this.registry.getEnabledProviders().length} provider(s). Supported Providers: ${this.registry
+                    .getEnabledProviders()
+                    .map((p) => p.name)
+                    .join(', ')}`,
         }
     }
 

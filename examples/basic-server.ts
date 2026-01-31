@@ -1,4 +1,4 @@
-import { OMSSServer } from '../src'; // replace this in your own implementation with '@omss/framework'
+import { OMSSServer } from '../src/index.js'; // replace this in your own implementation with '@omss/framework'
 import 'dotenv/config';
 
 async function main() {

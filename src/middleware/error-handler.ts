@@ -1,5 +1,5 @@
 import { FastifyError, FastifyRequest, FastifyReply } from 'fastify'
-import { OMSSError } from '../core/errors'
+import { OMSSError } from '../core/errors.js'
 
 export async function errorHandler(error: FastifyError | OMSSError, request: FastifyRequest, reply: FastifyReply) {
     // Log error for debugging

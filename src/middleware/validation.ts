@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { OMSSErrors } from '../core/errors'
-import { TMDBService } from '../services/tmdb.service'
+import { OMSSErrors } from '../core/errors.js'
+import { TMDBService } from '../services/tmdb.service.js'
 
 /**
  * Basic TMDB ID format validation

@@ -4,6 +4,7 @@
     "description": "Official OMSS backend framework - Multi-provider streaming media aggregation framework with auto-discovery",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "type": "module",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -28,10 +29,7 @@
     "scripts": {
         "build": "npm run clean && tsc && tsc-alias",
         "dev": "tsx watch examples/basic-server.ts",
-        "start": "node dist/examples/basic-server.js",
         "clean": "npx rimraf dist",
-        "prepublishOnly": "npm run build",
-        "test": "jest",
         "format": "prettier --write \"src/**/*.ts\""
     },
     "keywords": [

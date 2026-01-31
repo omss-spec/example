@@ -1,9 +1,9 @@
-import { ProviderRegistry } from '../providers/provider-registry'
-import { CacheService } from '../core/cache'
-import { SourceResponse, ProviderResult, ResponseIdMapping, ProviderMediaObject } from '../core/types'
-import { createTMDBValidator } from '../middleware/validation'
-import { OMSSErrors } from '../core/errors'
-import { TMDBService } from '../services/tmdb.service'
+import { ProviderRegistry } from '../providers/provider-registry.js'
+import { CacheService } from '../core/cache.js'
+import { SourceResponse, ProviderResult, ResponseIdMapping, ProviderMediaObject } from '../core/types.js'
+import { createTMDBValidator } from '../middleware/validation.js'
+import { OMSSErrors } from '../core/errors.js'
+import { TMDBService } from '../services/tmdb.service.js'
 import { v4 as uuidv4 } from 'uuid'
 
 export class SourceService {

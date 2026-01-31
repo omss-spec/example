@@ -1,4 +1,4 @@
-import { ProviderCapabilities, ProviderMediaObject, ProviderResult } from '../core/types'
+import { ProviderCapabilities, ProviderMediaObject, ProviderResult } from '../core/types.js'
 
 /**
  * Console wrapper for provider logging
