@@ -55,12 +55,12 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/omss-spec/example.git"
+        "url": "git+https://github.com/omss-spec/framework.git"
     },
     "bugs": {
-        "url": "https://github.com/omss-spec/example/issues"
+        "url": "https://github.com/omss-spec/framework/issues"
     },
-    "homepage": "https://github.com/omss-spec/example#readme",
+    "homepage": "https://github.com/omss-spec/framework#readme",
     "engines": {
         "node": ">=18.0.0"
     },
