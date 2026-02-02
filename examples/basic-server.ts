@@ -1,5 +1,5 @@
-import { OMSSServer } from '../src/index.js'; // replace this in your own implementation with '@omss/framework'
-import 'dotenv/config';
+import { OMSSServer } from '../src/index.js' // replace this in your own implementation with '@omss/framework'
+import 'dotenv/config'
 
 async function main() {
     const server = new OMSSServer({
@@ -14,7 +14,7 @@ async function main() {
 
         // Cache (memory for dev, Redis for prod)
         cache: {
-            type: process.env.CACHE_TYPE as 'memory' | 'redis' ?? 'memory',
+            type: (process.env.CACHE_TYPE as 'memory' | 'redis') ?? 'memory',
             ttl: {
                 sources: 60 * 60,
                 subtitles: 60 * 60 * 24,
@@ -31,17 +31,25 @@ async function main() {
             apiKey: process.env.TMDB_API_KEY!,
             cacheTTL: 24 * 60 * 60, // 24h
         },
-    });
+
+        proxyConfig: {
+            knownThirdPartyProxies: {
+                'hls1.vid1.site': [/\/proxy\/(.+)$/],
+                'madplay.site': [/\/api\/[^/]+\/proxy\?url=(.+)$/],
+                '*': [/\/proxy\/(.+)$/, /\/m3u8-proxy\?url=(.+?)(&|$)/, ],
+            },
+        },
+    })
 
     // Register providers
-    const registry = server.getRegistry();
+    const registry = server.getRegistry()
 
     // Your custom providers (auto-discovered from ./src/providers/)
-    await registry.discoverProviders('./examples/providers');
+    await registry.discoverProviders('./examples/providers')
 
-    await server.start();
+    await server.start()
 }
 
 main().catch(() => {
-    process.exit(1);
-});
+    process.exit(1)
+})

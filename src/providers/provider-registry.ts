@@ -2,12 +2,14 @@ import { BaseProvider } from './base-provider.js'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import { pathToFileURL } from 'url'
+import { OMSSConfig } from 'src/core/types.js'
 
 export interface ProviderRegistryConfig {
     proxyBaseUrl?: string
     host?: string
     port?: number
     protocol?: 'http' | 'https'
+    proxyConfig?: OMSSConfig['proxyConfig']
 }
 
 export class ProviderRegistry {
@@ -21,7 +23,12 @@ export class ProviderRegistry {
                 host: config.host,
                 port: config.port,
                 protocol: config.protocol,
+                proxyConfig: config.proxyConfig,
             })
+
+            if (config.proxyConfig) {
+                BaseProvider.setGlobalProxyConfig(config.proxyConfig)
+            }
         }
     }
 

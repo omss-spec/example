@@ -1,4 +1,4 @@
-import { ProviderCapabilities, ProviderMediaObject, ProviderResult } from '../core/types.js'
+import { ProviderCapabilities, ProviderMediaObject, ProviderResult, OMSSConfig } from '../core/types.js'
 
 /**
  * Console wrapper for provider logging
@@ -39,14 +39,17 @@ class ProviderLogger {
     }
 
     info(message: string, media?: ProviderMediaObject): void {
+        if (this.isProduction) return
         console.info(`${this.formatPrefix(media)} ${message}`)
     }
 
     warn(message: string, media?: ProviderMediaObject): void {
+        if (this.isProduction) return
         console.warn(`${this.formatPrefix(media)} ⚠️  ${message}`)
     }
 
     error(message: string, error?: any, media?: ProviderMediaObject): void {
+        if (this.isProduction) return
         console.error(`${this.formatPrefix(media)} ❌ ${message}`, error || '')
     }
 
@@ -69,6 +72,7 @@ interface ProxyConfig {
     host?: string
     port?: number
     protocol?: 'http' | 'https'
+    proxyConfig?: OMSSConfig['proxyConfig']
 }
 
 export abstract class BaseProvider {
@@ -78,6 +82,9 @@ export abstract class BaseProvider {
     abstract readonly BASE_URL: string
     abstract readonly HEADERS: Record<string, string>
     abstract readonly capabilities: ProviderCapabilities
+    private static globalProxyConfig: {
+        knownThirdPartyProxies: Record<string, RegExp[]>
+    } | null = null
 
     /**
      * Protected console logger instance (lazy initialized)
@@ -104,6 +111,56 @@ export abstract class BaseProvider {
      */
     static setProxyConfig(config: ProxyConfig): void {
         BaseProvider.proxyConfig = config
+    }
+
+
+    static setGlobalProxyConfig(config: NonNullable<OMSSConfig['proxyConfig']>): void {
+        BaseProvider.globalProxyConfig = config
+    }
+
+    private cleanThirdPartyProxy(proxyUrl: string): string {
+        const config = BaseProvider.globalProxyConfig
+        console.error(config)
+        if (!config) return proxyUrl
+
+        try {
+            const urlObj = new URL(proxyUrl)
+            const origin = urlObj.origin.toLowerCase()
+
+            // Extract from patterns
+            return this.extractFromPatterns(proxyUrl, origin, config)
+        } catch {
+            return proxyUrl
+        }
+    }
+
+    private extractFromPatterns(proxyUrl: string, origin: string, config: NonNullable<OMSSConfig['proxyConfig']>): string {
+        const patterns = [...(config.knownThirdPartyProxies[origin] || []), ...(config.knownThirdPartyProxies['*'] || [])]
+
+        for (const pattern of patterns) {
+            const match = proxyUrl.match(pattern)
+            if (match) {
+                let extracted = match[1]
+                // Multi-level decode
+                for (let i = 0; i < 5 && extracted.includes('%'); i++) {
+                    try {
+                        extracted = decodeURIComponent(extracted)
+                    } catch {
+                        break
+                    }
+                }
+                return extracted
+            }
+        }
+
+        // Query param fallback
+        const urlParams = new URLSearchParams(new URL(proxyUrl).search)
+        const urlParam = urlParams.get('url')
+        if (urlParam) {
+            return decodeURIComponent(urlParam)
+        }
+
+        return proxyUrl
     }
 
     /**
@@ -153,7 +210,10 @@ export abstract class BaseProvider {
      * Helper: Create proxy URL with full server address
      */
     protected createProxyUrl(url: string, headers?: Record<string, string>): string {
-        const data = JSON.stringify({ url, headers })
+        console.error('recieved', url)
+        const cleanUrl = this.cleanThirdPartyProxy(url)
+        console.error('end url is:', url)
+        const data = JSON.stringify({ url: cleanUrl, headers })
         const encodedData = encodeURIComponent(data)
         const baseUrl = BaseProvider.getProxyBaseUrl()
 

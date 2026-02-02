@@ -57,6 +57,7 @@ export class OMSSServer {
             registry ||
             new ProviderRegistry({
                 proxyBaseUrl,
+                proxyConfig: config.proxyConfig,
             })
 
         console.log(`[Server] Proxy base URL: ${proxyBaseUrl}`)

@@ -12,6 +12,9 @@ export interface OMSSConfig {
         apiKey: string
         cacheTTL?: number
     }
+    proxyConfig?: {
+        knownThirdPartyProxies: Record<string, RegExp[]>;
+    };
     note?: string
 }
 
