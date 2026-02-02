@@ -120,7 +120,6 @@ export abstract class BaseProvider {
 
     private cleanThirdPartyProxy(proxyUrl: string): string {
         const config = BaseProvider.globalProxyConfig
-        console.error(config)
         if (!config) return proxyUrl
 
         try {
@@ -210,9 +209,7 @@ export abstract class BaseProvider {
      * Helper: Create proxy URL with full server address
      */
     protected createProxyUrl(url: string, headers?: Record<string, string>): string {
-        console.error('recieved', url)
         const cleanUrl = this.cleanThirdPartyProxy(url)
-        console.error('end url is:', url)
         const data = JSON.stringify({ url: cleanUrl, headers })
         const encodedData = encodeURIComponent(data)
         const baseUrl = BaseProvider.getProxyBaseUrl()
