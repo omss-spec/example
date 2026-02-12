@@ -88,11 +88,12 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
       
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2.5.0
         with:
           name: Release ${{ github.ref_name }}
           body: ${{ steps.release_notes.outputs.notes }}
           draft: false
+          generate_release_notes: false
+          tag_name: ${{ steps.previoustag.outputs.previous_tag }}+
           prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc') }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
