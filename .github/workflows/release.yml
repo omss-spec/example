@@ -133,3 +133,14 @@ jobs:
             echo "$NOTES"
             echo "EOF"
           } >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          name: Release ${{ steps.currenttag.outputs.current_tag }}
+          body: ${{ steps.release_notes.outputs.notes }}
+          draft: false
+          generate_release_notes: false
+          tag_name: ${{ steps.currenttag.outputs.current_tag }}
+          prerelease: ${{ contains(steps.currenttag.outputs.current_tag, 'alpha') || contains(steps.currenttag.outputs.current_tag, 'beta') || contains(steps.currenttag.outputs.current_tag, 'rc') }}
+          token: ${{ secrets.GITHUB_TOKEN }}
